@@ -5,7 +5,7 @@ Este projeto foi desenvolvido como parte do **Desafio Técnico - Estágio** da C
 ---
 
 ## Deploy
-Acesse [aqui](painel-de-tarefas.vercel.app).
+Acesse [painel-de-tarefas.vercel.app](https://painel-de-tarefas.vercel.app).
 
 ## Como rodar o projeto
 
