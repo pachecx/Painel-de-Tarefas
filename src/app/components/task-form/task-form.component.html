@@ -1,0 +1,96 @@
+<div class="form-container">
+  <div class="form-box">
+    <h1 class="form-title">
+      {{ modoEdicao ? "Editar Tarefa" : "Nova Tarefa" }}
+    </h1>
+
+    <form (ngSubmit)="salvarTarefa()" #form="ngForm">
+      <div class="form-group">
+        <label for="titulo">Título<span class="required">*</span></label>
+        <input
+          type="text"
+          id="titulo"
+          name="titulo"
+          [(ngModel)]="tarefa.titulo"
+          required
+          placeholder="Ex: Criar layout"
+          #tituloInput="ngModel"
+          [class.invalido]="tituloInput.invalid && tituloInput.touched"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <textarea
+          id="descricao"
+          name="descricao"
+          [(ngModel)]="tarefa.descricao"
+          placeholder="Detalhes da tarefa..."
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="dataEntrega">Data de entrega</label>
+        <input
+          type="date"
+          id="dataEntrega"
+          name="dataEntrega"
+          [(ngModel)]="tarefa.dataEntrega"
+        />
+      </div>
+
+      <div class="form-group">
+        <p>Status</p>
+        <label
+          ><input
+            type="radio"
+            name="status"
+            value="Pendente"
+            [(ngModel)]="tarefa.status"
+            required
+          />
+          Pendente</label
+        >
+        <label
+          ><input
+            type="radio"
+            name="status"
+            value="Concluída"
+            [(ngModel)]="tarefa.status"
+          />
+          Concluída</label
+        >
+      </div>
+
+      <div class="form-group">
+        <label>Subtarefas</label>
+        <div
+          *ngFor="let sub of tarefa.subtarefas; let i = index"
+          class="subtask-group"
+        >
+          <input
+            type="text"
+            [(ngModel)]="tarefa.subtarefas[i].titulo"
+            name="subtitulo{{ i }}"
+            placeholder="Subtarefa {{ i + 1 }}"
+            required
+            #subInput="ngModel"
+            [class.invalido]="subInput.invalid && subInput.touched"
+          />
+          <button type="button" (click)="removerSubtarefa(i)">❌</button>
+        </div>
+        <button
+          type="button"
+          class="btn-secundario"
+          (click)="adicionarSubtarefa()"
+        >
+          + Adicionar Subtarefa
+        </button>
+      </div>
+
+      <button type="submit" class="btn-principal">
+        {{ modoEdicao ? "Salvar" : "Cadastrar" }}
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    margin: 0;
+}
+
+/* Toast base custom */
+.cyrrus-toastr {
+    background-color: #2563eb !important;
+    color: white !important;
+    border-left: 5px solid #1e3a8a;
+    font-weight: 500;
+    font-family: "Segoe UI", sans-serif;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.2);
+  }
+  
+  /* Específicos por tipo */
+  .toast-success {
+    background-color: #16a34a !important;
+    border-left-color: #14532d;
+  }
+  
+  .toast-error {
+    background-color: #dc2626 !important;
+    border-left-color: #7f1d1d;
+  }
+  
+  .toast-warning {
+    background-color: #facc15 !important;
+    color: #78350f !important;
+    border-left-color: #ca8a04;
+  }
+  
+  /* Título opcional */
+  .toast-title {
+    font-weight: bold;
+  }
+  
+  /* Texto principal */
+  .toast-message {
+    font-size: 0.95rem;
+  }
+  
+  /* Barra de progresso */
+  .toast-progress {
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 3px !important;
+  }
+  

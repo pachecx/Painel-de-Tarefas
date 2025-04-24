@@ -1,0 +1,206 @@
+.task-list-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.title {
+  font-size: 1.8rem;
+  text-align: center;
+  color: #2563eb;
+  margin-bottom: 2rem;
+}
+
+.empty {
+  text-align: center;
+  color: #888;
+  font-size: 1.2rem;
+}
+
+.task-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-left: 6px solid #3b82f6;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.task-card.atrasada {
+  border-left-color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.status {
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.3rem;
+  background-color: #fcd34d;
+  color: #92400e;
+}
+
+.status.done {
+  background-color: #4ade80;
+  color: #065f46;
+}
+
+.actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  background-color: #2563eb;
+  color: white;
+  font-weight: bold;
+  transition: background 0.2s ease;
+}
+
+.actions button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.btn-danger {
+  background-color: #dc2626;
+}
+
+.btn-danger:hover {
+  background-color: #b91c1c;
+}
+
+.filtro-input {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 1.5rem auto;
+  padding: 0.6rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.filtros {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filtro-select {
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+}
+
+.status-contagem {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.95rem;
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+.subtarefas-toggle {
+  margin-top: 1rem;
+}
+
+.subtarefas-toggle button {
+  background-color: #e0f2fe;
+  color: #2563eb;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #bae6fd;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.subtarefas {
+  margin-top: 0.5rem;
+  padding-left: 1rem;
+  list-style-type: none;
+}
+
+.subtarefas li {
+  margin-bottom: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.done-sub {
+  text-decoration: line-through;
+  color: #6b7280;
+}
+
+.lista-reordenavel {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cdk-drag-preview {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.divFiltro{
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .task-card {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .task-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+
+  .filtros {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .filtro-input,
+  .filtro-select {
+    width: 90%;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+}

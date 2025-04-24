@@ -1,0 +1,97 @@
+<div class="task-list-container">
+  <h2 class="title">Lista de Tarefas</h2>
+
+  <div class="filtros">
+    <input
+      type="text"
+      [(ngModel)]="filtro"
+      placeholder="🔍 Buscar por título..."
+      class="filtro-input"
+    />
+    <div class="divFiltro">
+      <select [(ngModel)]="filtroStatus" class="filtro-select">
+        <option value="Todas">Todas</option>
+        <option value="Pendente">Pendentes</option>
+        <option value="Concluída">Concluídas</option>
+      </select>
+
+      <select [(ngModel)]="criterioOrdenacao" class="filtro-select">
+        <option value="mais-recentes">Mais recentes</option>
+        <option value="mais-antigas">Mais antigas</option>
+      </select>
+    </div>
+
+    <div class="status-contagem">
+      <span>✅ Concluídas: {{ totalConcluidas }}</span>
+      <span>⏳ Pendentes: {{ totalPendentes }}</span>
+    </div>
+  </div>
+
+  <div *ngIf="tarefasFiltradas.length === 0" class="empty">
+    Nenhuma tarefa encontrada.
+  </div>
+
+  <div
+    cdkDropList
+    (cdkDropListDropped)="reordenar($event)"
+    class="lista-reordenavel"
+  >
+    <div
+      *ngFor="let tarefa of tarefasFiltradas"
+      cdkDrag
+      class="task-card"
+      [class.atrasada]="estaAtrasada(tarefa.dataEntrega)"
+    >
+      <div class="task-header">
+        <h3>{{ tarefa.titulo }}</h3>
+        <span class="status" [class.done]="tarefa.status === 'Concluída'">
+          {{ tarefa.status }}
+        </span>
+      </div>
+
+      <p *ngIf="tarefa.descricao">{{ tarefa.descricao }}</p>
+
+      <p *ngIf="tarefa.dataEntrega">
+        <strong>Entrega:</strong> {{ tarefa.dataEntrega }}
+        <span *ngIf="estaAtrasada(tarefa.dataEntrega)">⚠️ Atrasada</span>
+      </p>
+
+      <div class="subtarefas-toggle" *ngIf="tarefa.subtarefas.length > 0">
+        <button (click)="toggleSubtarefas(tarefa.id)">
+          {{
+            isExpanded(tarefa.id)
+              ? "🔼 Ocultar subtarefas"
+              : "🔽 Ver subtarefas"
+          }}
+        </button>
+      </div>
+
+      <ul class="subtarefas" *ngIf="isExpanded(tarefa.id)">
+        <li *ngFor="let sub of tarefa.subtarefas; let i = index">
+          <input
+            type="checkbox"
+            [checked]="sub.concluido"
+            (change)="atualizarSubtarefa(tarefa, i)"
+          />
+          <span [class.done-sub]="sub.concluido">{{ sub.titulo }}</span>
+        </li>
+      </ul>
+
+      <div class="actions">
+        <button
+          (click)="concluirTarefa(tarefa)"
+          [disabled]="tarefa.status === 'Concluída'"
+        >
+          ✔ Concluir
+        </button>
+        <button class="btn-danger" (click)="removerTarefa(tarefa.id)">
+          🗑 Remover
+        </button>
+
+        <button class="btn-editar" [routerLink]="['/editar-tarefa', tarefa.id]">
+          ✏️ Editar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
